@@ -1,5 +1,5 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-function useMousePosition() {
+function useMousePosition() { // 其实就是一个函数， 其他地方导入这个函数就可以了
   const x = ref(0)
   const y = ref(0)
   const updateMouse = (e: MouseEvent) => {
@@ -8,6 +8,7 @@ function useMousePosition() {
   }
   onMounted(() => {
     // document.addEventListener('click', updateMouse)
+    console.log('useMousePosition.ts onMounted:::');
     document.addEventListener('mousemove', updateMouse) // mouse move
   })
   onUnmounted(() => {
