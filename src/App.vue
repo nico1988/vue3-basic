@@ -73,11 +73,11 @@ export default {
     onUpdated(() => {
       console.log('onUpdated lifeCycle:::')
     });
-    onRenderTracked((e) => {
-      console.log('onRenderTracked lifeCycle:::', e)
+    onRenderTracked(() => {
+      // console.log('onRenderTracked lifeCycle:::', e)
     });
-    onRenderTriggered((e) => {
-      console.log('onRenderTriggered lifeCycle:::', e)
+    onRenderTriggered(() => {
+      // console.log('onRenderTriggered lifeCycle:::', e)
     });
 
     const data: DataProps  = reactive({
@@ -101,6 +101,10 @@ export default {
     const updateGreeting = () => {
       greetings.value += 'Hello! '
     }
+
+    watch(greetings, () => {
+      document.title = 'update:: ' + greetings.value;
+    });
     const refData = toRefs(data)
     const modalIsOpen = ref(false)
     const openModal = () => {
