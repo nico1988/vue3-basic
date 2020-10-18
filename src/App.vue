@@ -7,6 +7,8 @@
     <h1>{{triple}}</h1>
     <h1>{{greetings}}</h1>
     <button @click="increase">👍+1</button><br/>
+    {{numbers}}
+    <button @click="push">push numbers</button><br/>
     <p>{{error}}</p>
     <Suspense>
       <template #default>
@@ -39,6 +41,8 @@ interface DataProps {
   count: number;
   double: number;
   increase: () => void;
+  push: () => void;
+  numbers: Array;
 }
 interface DogResult {
   message: string;
@@ -63,14 +67,15 @@ export default {
       error.value = e
       return true
     })
-    const data1: DataProps = reactive({
-      count: 1
-    })
     const data: DataProps  = reactive({
       count: 0,
       increase: () => { data.count++},
+      push: () => {
+        (data.numbers.push(+(Math.random() * 10).toFixed(0)));
+      },
       double: computed(() => data.count * 2),
-      triple: computed(() => data.count << 2)
+      triple: computed(() => data.count << 2),
+      numbers: [1,2,3]
     })
     const { x, y } = useMousePosition()
     const { result, loading, loaded } = useURLLoader<CatResult[]>('https://api.thecatapi.com/v1/images/search?limit=1')
