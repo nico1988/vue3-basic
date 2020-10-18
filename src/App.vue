@@ -27,6 +27,8 @@
 </template>
 
 <script lang="ts">
+// ref 主要用于原始类型
+// reactive 也是函数 参数是object
 import { ref, computed, reactive, toRefs, watch, onErrorCaptured } from 'vue'
 import useMousePosition from './hooks/useMousePosition'
 import useURLLoader from './hooks/useURLLoader'
@@ -61,6 +63,9 @@ export default {
       error.value = e
       return true
     })
+    const data1: DataProps = reactive({
+      count: 1
+    })
     const data: DataProps  = reactive({
       count: 0,
       increase: () => { data.count++},
@@ -87,7 +92,7 @@ export default {
       modalIsOpen.value = false
     }
     return {
-      ...refData,
+      ...refData, // 展开对象
       greetings,
       updateGreeting,
       x,
