@@ -53,7 +53,7 @@ export default {
     AsyncShow,
     DogShow,
   },
-  setup() { // 这个方法中没有this 在data props watch computed之前运行
+  setup() { // 这个方法中没有this 在data props watch computed methods 之前运行
     const error = ref(null)
     onErrorCaptured((e: any) => {
       error.value = e
