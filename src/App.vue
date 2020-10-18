@@ -2,8 +2,11 @@
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
     <h1>{{count}}</h1>
+    <!--ref引用 模板中默认展示count.value-->
     <h1>{{double}}</h1>
+    <h1>{{triple}}</h1>
     <h1>{{greetings}}</h1>
+    <button @click="increase">👍+1</button><br/>
     <p>{{error}}</p>
     <Suspense>
       <template #default>
@@ -19,7 +22,6 @@
     <h1 v-if="loading">Loading!...</h1>
     <img v-if="loaded" :src="result[0].url" >
     <h1>X: {{x}}, Y: {{y}}</h1>
-    <button @click="increase">👍+1</button><br/>
     <button @click="updateGreeting">Update Title</button>
   </div>
 </template>
@@ -63,6 +65,7 @@ export default {
       count: 0,
       increase: () => { data.count++},
       double: computed(() => data.count * 2),
+      triple: computed(() => data.count << 2)
     })
     const { x, y } = useMousePosition()
     const { result, loading, loaded } = useURLLoader<CatResult[]>('https://api.thecatapi.com/v1/images/search?limit=1')
