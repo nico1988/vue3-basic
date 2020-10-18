@@ -31,7 +31,7 @@
 <script lang="ts">
 // ref 主要用于原始类型
 // reactive 也是函数 参数是object
-import { ref, computed, reactive, toRefs, watch, onErrorCaptured } from 'vue'
+import { ref, computed, reactive, toRefs, watch, onErrorCaptured, onMounted, onUpdated, onRenderTracked, onRenderTriggered } from 'vue'
 import useMousePosition from './hooks/useMousePosition'
 import useURLLoader from './hooks/useURLLoader'
 import Modal from './components/Modal.vue'
@@ -67,6 +67,19 @@ export default {
       error.value = e
       return true
     })
+    onMounted(() => {
+      console.log('vue3 lifeCycle::: ');
+    });
+    onUpdated(() => {
+      console.log('onUpdated lifeCycle:::')
+    });
+    onRenderTracked((e) => {
+      console.log('onRenderTracked lifeCycle:::', e)
+    });
+    onRenderTriggered((e) => {
+      console.log('onRenderTriggered lifeCycle:::', e)
+    });
+
     const data: DataProps  = reactive({
       count: 0,
       increase: () => { data.count++},
