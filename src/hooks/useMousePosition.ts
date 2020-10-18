@@ -1,5 +1,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
-function useMousePosition() { // 其实就是一个函数， 其他地方导入这个函数就可以了
+// 其实就是一个函数， 其他地方导入这个函数就可以了
+// 逻辑脱离了组件 跟组件没有关系
+// 不需要模板
+function useMousePosition() {
   const x = ref(0)
   const y = ref(0)
   const updateMouse = (e: MouseEvent) => {
