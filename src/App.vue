@@ -102,8 +102,14 @@ export default {
       greetings.value += 'Hello! '
     }
 
-    watch(greetings, () => {
+    watch(greetings, (newV, oldV) => {
+      console.log('new:::', newV);
+      console.log('oldV:::', oldV);
       document.title = 'update:: ' + greetings.value;
+    });
+    watch([result, greetings], (newV, oldV) => { // 多个watch
+      console.log('new:::', newV);
+      console.log('old:::', oldV);
     });
     const refData = toRefs(data)
     const modalIsOpen = ref(false)
